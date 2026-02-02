@@ -1,8 +1,8 @@
-# app.py - Fixed version for Render deployment
 # -*- coding: utf-8 -*-
 """
 STBG Project Prioritization API
-Fixed for Render.com deployment
+
+This script provides a FastAPI endpoint to analyze highway projects based on various criteria.
 """
 
 import geopandas as gpd
@@ -26,11 +26,9 @@ origins = [
     "http://localhost:5173",
     "http://localhost:5174",
     "https://stbg-projects-highway-py.netlify.app",
-    "https://stbg.onrender.com",
+    "https://stbg.onrender.com", # The backend origin
     "https://stbg-projects-highway-py-production.netlify.app",
     "https://stbg-projects-highway-test.netlify.app",
-    "https://stbg-prioritization.onrender.com",  # Add your Render URL
-    "*"  # Allow all for testing
 ]
 
 app.add_middleware(
@@ -1081,9 +1079,8 @@ async def analyze_projects(
             raise HTTPException(status_code=500, detail=f"An unexpected error occurred: {str(e)}")
 
 # =============================================================================
-# EXECUTION - FIXED FOR RENDER
+# EXECUTION
 # =============================================================================
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 10000))
-    uvicorn.run("app:app", host="0.0.0.0", port=port, log_level="info")
+    uvicorn.run("main:app", host="0.0.0.0", port=5000, reload=True)
