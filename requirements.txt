@@ -6,3 +6,11 @@ pandas
 numpy
 python-multipart
 gunicorn
+fastapi
+uvicorn[standard]
+geopandas
+shapely
+pandas
+numpy
+python-multipart
+gunicorn
